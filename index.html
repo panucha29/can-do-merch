@@ -110,6 +110,51 @@
   .hv-tile.clickable{ cursor: pointer; transition: transform .18s ease; }
   .hv-tile.clickable:hover{ transform: translateY(-4px); }
 
+  /* ---------- hero carousel ---------- */
+  @keyframes marquee{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+  .hero-carousel{
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    margin-top: 32px;
+  }
+  .hero-carousel-track{
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: marquee 35s linear infinite;
+  }
+  .hero-carousel:hover .hero-carousel-track{ animation-play-state: paused; }
+  .hero-carousel-track img{
+    height: clamp(70px, 20vw, 110px);
+    width: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 861px){
+    .hero-head{
+      max-width: none;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      grid-template-areas:
+        "title carousel"
+        "sub carousel"
+        "ctas carousel"
+        "visual visual";
+      column-gap: 56px;
+    }
+    .hero-head > h1{ grid-area: title; align-self: end; }
+    .hero-head > .hero-sub{ grid-area: sub; }
+    .hero-head > .hero-ctas{ grid-area: ctas; }
+    .hero-carousel{ grid-area: carousel; align-self: center; margin-top: 0; }
+    .hero-visual{ grid-area: visual; margin-top: clamp(48px, 8vw, 80px); }
+    .hero-carousel-track img{ height: clamp(240px, 24vw, 380px); }
+    .hero-carousel-track{ gap: 68px; }
+  }
+
   /* ---------- values strip (replaces fake client logos) ---------- */
   .values-strip{ padding-block: 40px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .values-strip .wrap{ display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between; align-items: center; }
@@ -340,24 +385,49 @@
       <button class="btn btn-primary" onclick="openForm()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Get quote</button>
       <a class="btn btn-outline" href="#products">See what we make</a>
     </div>
-  </div>
 
-  <div class="hero-visual">
-    <div class="hv-tile hv-1 clickable" onclick="jumpToCategory('Apparel')">
-      <span class="tile-emoji">👕</span>
-      <span class="tile-label">Apparel</span>
+    <div class="hero-carousel">
+      <div class="hero-carousel-track">
+        <img src="images/orbit/tee.png" alt="Tee">
+        <img src="images/orbit/bottle.png" alt="Bottle">
+        <img src="images/orbit/cup.png" alt="Cup">
+        <img src="images/orbit/thermos.png" alt="Thermos">
+        <img src="images/products/tote.png" alt="Tote">
+        <img src="images/products/hoodie.png" alt="Hoodie">
+        <img src="images/products/backpack.png" alt="Backpack">
+        <img src="images/products/quarterzip.png" alt="Quarter-zip">
+        <img src="images/products/sleeve.png" alt="Sleeve">
+        <img src="images/products/cap.png" alt="Cap">
+        <img src="images/orbit/tee.png" alt="Tee">
+        <img src="images/orbit/bottle.png" alt="Bottle">
+        <img src="images/orbit/cup.png" alt="Cup">
+        <img src="images/orbit/thermos.png" alt="Thermos">
+        <img src="images/products/tote.png" alt="Tote">
+        <img src="images/products/hoodie.png" alt="Hoodie">
+        <img src="images/products/backpack.png" alt="Backpack">
+        <img src="images/products/quarterzip.png" alt="Quarter-zip">
+        <img src="images/products/sleeve.png" alt="Sleeve">
+        <img src="images/products/cap.png" alt="Cap">
+      </div>
     </div>
-    <div class="hv-tile hv-2 clickable" onclick="jumpToCategory('Drinkware')">
-      <span class="tile-emoji">🥤</span>
-      <span class="tile-label">Drinkware</span>
-    </div>
-    <div class="hv-tile hv-3 clickable" onclick="jumpToCategory('Bags')">
-      <span class="tile-emoji">👜</span>
-      <span class="tile-label">Bags</span>
-    </div>
-    <div class="hv-tile hv-4 clickable" onclick="jumpToProducts()">
-      <span class="tile-emoji">🚩</span>
-      <span class="tile-label">Event merch &amp; desk accessories</span>
+
+    <div class="hero-visual">
+      <div class="hv-tile hv-1 clickable" onclick="jumpToCategory('Apparel')">
+        <span class="tile-emoji">👕</span>
+        <span class="tile-label">Apparel</span>
+      </div>
+      <div class="hv-tile hv-2 clickable" onclick="jumpToCategory('Drinkware')">
+        <span class="tile-emoji">🥤</span>
+        <span class="tile-label">Drinkware</span>
+      </div>
+      <div class="hv-tile hv-3 clickable" onclick="jumpToCategory('Bags')">
+        <span class="tile-emoji">👜</span>
+        <span class="tile-label">Bags</span>
+      </div>
+      <div class="hv-tile hv-4 clickable" onclick="jumpToProducts()">
+        <span class="tile-emoji">🚩</span>
+        <span class="tile-label">Event merch &amp; desk accessories</span>
+      </div>
     </div>
   </div>
 </header>
